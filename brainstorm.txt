@@ -1,0 +1,7 @@
+
+
+find tags
+has to scan every one
+scan tags in list if the comic contains the tags
+add in a list
+pick randomly
