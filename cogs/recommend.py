@@ -16,7 +16,7 @@ class Recommend(commands.Cog):
     def __init__(self, client):
         self.client = client
         self.count = 0
-        self.color = 0x82CAA4
+        self.color = 0x990300
 
     # you can remove this if you want to
     @commands.Cog.listener()
