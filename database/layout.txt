@@ -17,3 +17,5 @@ Spiderman is a spiderboy that is spideying arioun the world because he wants to
 # note 
 tags shall all be in lowercase
 you dont have to do breaklines '\n' or press the enter key
+
+you can use myanimelist.net as a guide
