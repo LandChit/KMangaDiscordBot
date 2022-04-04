@@ -16,8 +16,8 @@ class Recommend(commands.Cog):
     def __init__(self, client):
         self.client = client
         self.count = 0
-        
-        
+        self.color = 0x82CAA4
+
     # you can remove this if you want to
     @commands.Cog.listener()
     async def on_ready(self):
@@ -25,49 +25,115 @@ class Recommend(commands.Cog):
 
     # -----------------------------------
 
-    
-    
     # main command
-    @nextcord.slash_command(description='recommendations', guild_ids=vrs.GUILD_ID)
+    @nextcord.slash_command(description="recommendations", guild_ids=vrs.GUILD_ID)
     async def recommend(self, interaction: Interaction):
         ...
 
     # comics
-    @recommend.subcommand(description='recommends comics')
+    @recommend.subcommand(name="comics", description="recommends comics")
     async def comics(
         self,
         interaction: Interaction,
-        tags: str = SlashOption(description='tags/genre seperate by using \',\'', required=False),
+        tags: str = SlashOption(
+            description="tags/genre seperate by using ','", required=False
+        ),
     ):
-        path = './database/comic/'
+        path = "./database/comic/"
         if tags != None:
-            files = lgc.checktags(path,tags)
+            files = lgc.checktags(path, tags.lower)
         else:
             files = os.listdir(path)
+
         try:
-            final = random.choice(files)
+            pick = random.choice(files)
+            print(pick)
+
+            final = lgc.get(path + pick)
+
+            em = nextcord.Embed(
+                title='Comic Recommendation',
+                description=final,
+                color=self.color,
+            )
+            em.set_footer(text='tags: '+tags)
+            await interaction.response.send_message(embed=em)
+            
         except IndexError:
-            final = None
-        print(final)
-        
+            await interaction.response.send_message(
+                "```\nA comic with those parameters cant be found```",
+                delete_after=10,
+            )
 
     # manhwa/manhwua
-    @recommend.subcommand(description='recommends manhwa/manhwua')
+    @recommend.subcommand(name="manhwa", description="recommends manhwa/manhwua")
     async def manhwa(
         self,
         interaction: Interaction,
-        tags: str = SlashOption(description='tags/genre seperate by using \',\'', required=False),
+        tags: str = SlashOption(
+            description="tags/genre seperate by using ','", required=False
+        ),
     ):
-        await interaction.response.send_message('first sub command')
+        path = "./database/manhwa/"
+        if tags != None:
+            files = lgc.checktags(path, tags.lower())
+        else:
+            files = os.listdir(path)
+
+        try:
+            pick = random.choice(files)
+            print(pick)
+
+            final = lgc.get(path + pick)
+
+            em = nextcord.Embed(
+                title='Manhwa Recommendation',
+                description=final,
+                color=self.color,
+            )
+            em.set_footer(text='tags: '+tags)
+            await interaction.response.send_message(embed=em)
+
+        except IndexError:
+            await interaction.response.send_message(
+                "```\nA manhwa with those parameters cant be found```",
+                delete_after=10,
+            )
 
     # manga
-    @recommend.subcommand(description='recommends manga')
+    @recommend.subcommand(name="manga", description="recommends manga")
     async def manga(
         self,
         interaction: Interaction,
-        tags: str = SlashOption(description='tags/genre seperate by using \',\'', required=False),
+        tags: str = SlashOption(
+            description="tags/genre seperate by using ','", required=False
+        ),
     ):
-        await interaction.response.send_message('first sub command')
+        path = "./database/manga/"
+        if tags != None:
+            files = lgc.checktags(path, tags.lower())
+        else:
+            files = os.listdir(path)
+
+        try:
+            pick = random.choice(files)
+            print(pick)
+
+            final = lgc.get(path + pick)
+
+            em = nextcord.Embed(
+                title='Manga Recommendation',
+                description=final,
+                color=self.color,
+            )
+            em.set_footer(text='tags: '+tags)
+            await interaction.response.send_message(embed=em)
+
+        except IndexError:
+            await interaction.response.send_message(
+                "```\nA manga with those parameters cant be found```",
+                delete_after=10,
+            )
 
 
 def setup(client):
