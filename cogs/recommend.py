@@ -44,7 +44,7 @@ class Recommend(commands.Cog):
             files = lgc.checktags(path, tags.lower)
         else:
             files = os.listdir(path)
-
+            tags = 'None Picked'
         try:
             pick = random.choice(files)
             print(pick)
@@ -56,7 +56,7 @@ class Recommend(commands.Cog):
                 description=final,
                 color=self.color,
             )
-            em.set_footer(text='tags: '+tags)
+            em.set_footer(text='tags satisfied: '+tags)
             await interaction.response.send_message(embed=em)
             
         except IndexError:
@@ -79,6 +79,7 @@ class Recommend(commands.Cog):
             files = lgc.checktags(path, tags.lower())
         else:
             files = os.listdir(path)
+            tags = 'None Picked'
 
         try:
             pick = random.choice(files)
@@ -91,7 +92,7 @@ class Recommend(commands.Cog):
                 description=final,
                 color=self.color,
             )
-            em.set_footer(text='tags: '+tags)
+            em.set_footer(text='tags satisfied: '+tags)
             await interaction.response.send_message(embed=em)
 
         except IndexError:
@@ -114,6 +115,7 @@ class Recommend(commands.Cog):
             files = lgc.checktags(path, tags.lower())
         else:
             files = os.listdir(path)
+            tags = 'None Picked'
 
         try:
             pick = random.choice(files)
@@ -126,7 +128,7 @@ class Recommend(commands.Cog):
                 description=final,
                 color=self.color,
             )
-            em.set_footer(text='tags: '+tags)
+            em.set_footer(text='tags satisfied: '+tags)
             await interaction.response.send_message(embed=em)
 
         except IndexError:
