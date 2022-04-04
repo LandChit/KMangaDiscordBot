@@ -44,21 +44,20 @@ class Recommend(commands.Cog):
             files = lgc.checktags(path, tags.lower)
         else:
             files = os.listdir(path)
-            tags = 'None Picked'
+            tags = "None Picked"
         try:
             pick = random.choice(files)
-            print(pick)
 
             final = lgc.get(path + pick)
 
             em = nextcord.Embed(
-                title='Comic Recommendation',
+                title="Comic Recommendation",
                 description=final,
                 color=self.color,
             )
-            em.set_footer(text='tags satisfied: '+tags)
+            em.set_footer(text="tags satisfied: " + tags)
             await interaction.response.send_message(embed=em)
-            
+
         except IndexError:
             await interaction.response.send_message(
                 "```\nA comic with those parameters cant be found```",
@@ -79,20 +78,19 @@ class Recommend(commands.Cog):
             files = lgc.checktags(path, tags.lower())
         else:
             files = os.listdir(path)
-            tags = 'None Picked'
+            tags = "None Picked"
 
         try:
             pick = random.choice(files)
-            print(pick)
 
             final = lgc.get(path + pick)
 
             em = nextcord.Embed(
-                title='Manhwa Recommendation',
+                title="Manhwa Recommendation",
                 description=final,
                 color=self.color,
             )
-            em.set_footer(text='tags satisfied: '+tags)
+            em.set_footer(text="tags satisfied: " + tags)
             await interaction.response.send_message(embed=em)
 
         except IndexError:
@@ -115,20 +113,19 @@ class Recommend(commands.Cog):
             files = lgc.checktags(path, tags.lower())
         else:
             files = os.listdir(path)
-            tags = 'None Picked'
+            tags = "None Picked"
 
         try:
             pick = random.choice(files)
-            print(pick)
 
             final = lgc.get(path + pick)
 
             em = nextcord.Embed(
-                title='Manga Recommendation',
+                title="Manga Recommendation",
                 description=final,
                 color=self.color,
             )
-            em.set_footer(text='tags satisfied: '+tags)
+            em.set_footer(text="tags satisfied: " + tags)
             await interaction.response.send_message(embed=em)
 
         except IndexError:
